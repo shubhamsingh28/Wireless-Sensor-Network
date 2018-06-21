@@ -1,0 +1,53 @@
+[System]
+Name='ClusterHeadRot_804'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='ResEnergy'
+Range=[0 1]
+NumMFs=3
+MF1='Low':'trimf',[0 0.2 0.3]
+MF2='Medium':'trimf',[0.25 0.6 0.75]
+MF3='High':'trimf',[0.7 0.9 1]
+
+[Input2]
+Name='PrevCount'
+Range=[0 1000]
+NumMFs=3
+MF1='Small':'trimf',[0 100 300]
+MF2='Inter':'trimf',[300 500 750]
+MF3='Large':'trimf',[700 850 1000]
+
+[Output1]
+Name='output1'
+Range=[0 10]
+NumMFs=9
+MF1='HighlyLow':'trimf',[0 1.5 2]
+MF2='IntLow':'trimf',[1 3 3.5]
+MF3='LessLow':'trimf',[3 4 5]
+MF4='LessMed':'trimf',[5 5.5 7]
+MF5='HighlyMed':'trimf',[5 6 7]
+MF6='IntMed':'trimf',[5 6 6.5]
+MF7='LessHigh':'trimf',[7 7.5 8.5]
+MF8='IntHigh':'trimf',[7.5 8 8.5]
+MF9='HighlyHigh':'trimf',[8 8.5 10]
+
+[Rules]
+3 3, 4 (1) : 1
+3 2, 7 (1) : 1
+3 1, 9 (1) : 1
+2 3, 3 (1) : 1
+2 2, 5 (1) : 1
+2 1, 8 (1) : 1
+1 3, 1 (1) : 1
+1 2, 2 (1) : 1
+1 1, 6 (1) : 1
